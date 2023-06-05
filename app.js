@@ -40,27 +40,20 @@ app.post("/", function(req,res){
     }
 
     const request = https.request(url ,options,function(response){
-
-        if(response.statusCode === 200){
-            res.sendFile(__dirname +"/success.html");
-        }else{
-            res.sendFile(__dirname +"/failure.html");
-        }
-
         response.on("data", function(data){
             console.log(JSON.parse(data)); 
         })
     })
 
-    //request.write(jsonData);
+    request.write(jsonData);
     request.end();
 })
 
-app.post("/failure",function(req,res){
-    res.redirect("/");  
-})
 
-app.listen(process.env.PORT || 3000, function(){
+
+
+
+app.listen(3000, function(){
     console.log("server has started on port 3000");
 })
 
@@ -69,4 +62,4 @@ app.listen(process.env.PORT || 3000, function(){
 //api
 //1d808d5615c0b1deb99daf9f2f2b1eb7-us21
 
-//ad725a154c
+//ad725a154c.
